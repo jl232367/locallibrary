@@ -110,7 +110,7 @@ exports.bookinstance_delete_get = function(req, res, next) {
         }
    
             // Book instance lack any dependencies so no reason to check before deleting book instance
-        res.render('bookinstance_delete', {title: 'Delete Book Instance',book_Instance: bookinstance.book.title});
+        res.render('bookinstance_delete', {title: 'Delete Book Instance',book_Instance: bookinstance.book});
     })
         
 };
@@ -125,11 +125,12 @@ exports.bookinstance_delete_post = function(req, res, next) {
     }, function (err, results) {
         if (err) {return next(err); }
         else {
+           // console.log()
             BookInstance.findByIdAndRemove(req.body.bookinstanceid, function deleteBookInstance(err) {
                 if(err) {
                     return next(err);
                 }
-                res.redirect('catalog/bookinstances')
+                res.redirect('/catalog/bookinstances')
             })
         }
     });
