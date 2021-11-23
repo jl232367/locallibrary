@@ -125,11 +125,12 @@ exports.bookinstance_delete_post = function(req, res, next) {
     }, function (err, results) {
         if (err) {return next(err); }
         else {
-           // console.log()
-            BookInstance.findByIdAndRemove(req.body.bookinstanceid, function deleteBookInstance(err) {
+           //console.log(results);
+            BookInstance.findByIdAndRemove(req.params.id, function deleteBookInstance(err) {
                 if(err) {
                     return next(err);
                 }
+                //console.log(results);
                 res.redirect('/catalog/bookinstances')
             })
         }
