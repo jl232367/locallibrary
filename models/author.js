@@ -18,7 +18,13 @@ AuthorSchema
 .get(function () {
   return this.family_name + ', ' + this.first_name;
 });
+AuthorSchema.virtual('dateofbirth').get(function() {
+  return this.date_of_birth ? DateTime.fromJSDate(this.date_of_birth).toISODate() : "Sprang from Nothing"
+});
 
+AuthorSchema.virtual('dateofdeath').get(function () {
+  return this.date_of_death ? DateTime.fromJSDate(this.date_of_death).toISODate() : "Still Kickin'"
+});
 // Virtual for author's lifespan
 AuthorSchema.virtual('lifespan').get(function() {
   var lifetime_string = '';
